@@ -1,27 +1,36 @@
 'use strict';
 
-
 var fs = require('fs');
 
-fs.readFile('/usr/share/dict/words', 'ascii' ,function(err, data) {
-    if ( err ) {
-        return err;
-    }
+var Utils = require('./utils');
 
-    var wordList = data.split('\n');
+var utils = new Utils();
 
-    wordList.forEach(function(value, index, array){
+exports.start = function(req, res) {
+    res.render('index', null);
+};
+
+exports.stats = function(req, res) {
+
+    fs.readFile('/usr/share/dict/words', 'ascii' ,function(err, data) {
+        if ( err ) {
+            return err;
+        }
+
+        var wordList = data.split('\n');
+
+        var results = {
+            wordCount :             wordList.length,
+            vowelsTotalCount:       utils.vowelsTotalCount(wordList),
+            consonantTotalCount:    utils.consonantTotalCount(wordList),
+            vowelLowerCount:        utils.vowelLowerCount(wordList),
+            vowelUpperCount:        utils.vowelUpperCount(wordList),
+            consonantLowerCount:    utils.consonantLowerCount(wordList),
+            consonantUpperCount:    utils.consonantUpperCount(wordList)
+        };
+
+        res.send(results)
 
     });
+};
 
-});
-
-var Controller = function() {
-
-    return {
-
-    }
-
-}
-
-module.exports = Controller;

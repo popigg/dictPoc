@@ -1,11 +1,13 @@
 'use strict';
 
-
 var controller = require ('./controller');
 
+module.exports = function(app) {
 
-var Router = function(router) {
+    app.route('/')
+        .get(controller.start);
 
-    router.route('/')
-        .get(controller);
+    app.route('/stats')
+        .get(controller.stats);
+
 };
