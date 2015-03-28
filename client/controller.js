@@ -18,10 +18,17 @@
         function initialize() {
             vm.isLoaded = false;
 
+            vm.totalChartTypes = [ 'PolarArea', 'Doughnut', 'Pie' ];
+            vm.selectedTotalChartType = vm.totalChartTypes[0];
+
+            vm.totalLabels      = [ 'total vowels', 'total consonants' ];
+            vm.totalUpperLabels = [ 'upper vowels', 'upper consonants' ];
+            vm.totalLowerLabels = [ 'lower vowels', 'lower consonants' ];
+
             vm.seriesChartTypes = [ 'Line', 'Bar', 'Radar' ];
             vm.selectedSeriesChartType = vm.seriesChartTypes[0];
 
-            vm.series          = ['Lower', 'Upper'];
+            vm.series          = ['lower', 'upper'];
             vm.vowelLabels     = ['A', 'E', 'I', 'O', 'U'];
             vm.consonantLabels = ['B', 'C', 'D', 'F', 'G',
                 'H', 'J', 'K', 'L', 'M',
@@ -29,15 +36,11 @@
                 'T', 'V', 'W', 'X', 'Y',
                 'Z'];
 
-            vm.totalChartTypes = [ 'Doughnut', 'Pie', 'PolarArea' ];
-            vm.selectedTotalChartType = vm.totalChartTypes[0];
-
-            vm.totalLabels    = ['total words', 'total vowels', 'total consonants'];
-
             Stats.get().$promise
 
                 .then(function( data ){
-
+                    
+                    console.log(data);
                     updateView(data);
 
                 }, function( err ) {
