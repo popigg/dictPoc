@@ -1,15 +1,92 @@
 <!DOCTYPE html>
-<html data-ng-app="pocWords">
+<html data-ng-app="app">
 <head lang="en">
     <meta charset="UTF-8">
     <link rel="stylesheet" href="angular-chart.js/dist/angular-chart.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/app.css">
     <title>poc Words</title>
     <base href="/">
 </head>
-<body>
-    Start
+<body class="container-fluid">
+    <h1>Words POC</h1>
+    <div data-ng-controller="MainController as MainController">
+
+        <div data-ng-hide="MainController.isLoaded" class="btn btn-lg btn-warning"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Loading...</div>
+
+        <div data-ng-if="MainController.isLoaded">
+
+            <div class="col-lg-6 col-sm-12 col-lg-offset-3">
+                <h3>Vowels total Count: <span class="text-danger">{% raw %}{{ MainController.data.wordCount }}{% endraw %}</span></h3>
+            </div>
+
+            <div class="col-lg-6 col-sm-12 col-lg-offset-3">
+
+                <h3>Total words: split consonants and vowels</h3>
+                <canvas id="base" class="chart chart-base" chart-type="totalChartType"
+                        data="[MainController.data.wordCount, MainController.data.vowelTotalCount, MainController.data.consonantTotalCount ]"
+                        labels="MainController.totalLabels" legend="true">
+                </canvas>
+
+                <div class="text-center">
+                    <p>Choose your chart type</p>
+                    <select data-ng-model="totalChartType" data-ng-init="totalChartType = 'Doughnut'">
+                        <option data-ng-repeat="option in MainController.totalChartTypes" value="{% raw %}{{ option }}{% endraw %}">{% raw %}{{ option }}{% endraw %}</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="col-lg-6 col-sm-12">
+                <h3>Vowels total Count: <span class="text-info">{% raw %}{{ MainController.data.vowelTotalCount }}{% endraw %}</span></h3>
+            </div>
+
+            <div class="col-lg-6 col-sm-12">
+                <h3>Consonant total Count: <span class="text-success">{% raw %}{{ MainController.data.consonantTotalCount }}{% endraw %}</span></h3>
+            </div>
+
+            <div class="col-lg-6 col-sm-12">
+                <h3>Upper vowels vs. Lower</h3>
+                <canvas id="base" class="chart chart-base" chart-type="vowelChartType"
+                        data="[ MainController.data.vowelLowerCount, MainController.data.vowelUpperCount ]"
+                        labels="MainController.vowelLabels" legend="true" series="MainController.series">
+                </canvas>
+
+                <div class="text-center">
+                    <p>Choose your chart type</p>
+                    <select data-ng-model="vowelChartType" data-ng-init="vowelChartType = 'Line'">
+                        <option data-ng-repeat="option in MainController.seriesChartTypes" value="{% raw %}{{ option }}{% endraw %}">{% raw %}{{ option }}{% endraw %}</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="col-lg-6 col-sm-12">
+                <h3>Upper consonants vs. Lower</h3>
+                <canvas id="base" class="chart chart-base" chart-type="consonantChartType"
+                        data="[ MainController.data.consonantLowerCount, MainController.data.consonantUpperCount ]"
+                        labels="MainController.consonantLabels" legend="true" series="MainController.series">
+                </canvas>
+
+                <div class="text-center">
+                    <p>Choose your chart type</p>
+                    <select data-ng-model="consonantChartType" data-ng-init="consonantChartType = 'Line'">
+                        <option data-ng-repeat="option in MainController.seriesChartTypes" value="{% raw %}{{ option }}{% endraw %}">{% raw %}{{ option }}{% endraw %}</option>
+                    </select>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <script src="angular/angular.js"></script>
+    <script src="Chart.js/Chart.js"></script>
+    <script src="angular-chart.js/dist/angular-chart.js"></script>
+    <script src="angular-resource/angular-resource.js"></script>
+
     <script src="app.js"></script>
     <script src="controller.js"></script>
-    <script src="angular-chart.js/dist/angular-chart.js"></script>
+
 </body>
 </html>
