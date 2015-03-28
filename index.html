@@ -9,33 +9,74 @@
     <base href="/">
 </head>
 <body class="container-fluid">
-    <h1>Words POC</h1>
+    <h1>Analysing Linux Dictionary POC</h1>
     <div data-ng-controller="MainController as MainController">
 
-        <div data-ng-hide="MainController.isLoaded" class="btn btn-lg btn-warning"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Loading...</div>
+        <div data-ng-hide="MainController.isLoaded" class="btn btn-lg btn-warning">
+            <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
+            Loading...
+        </div>
 
         <div data-ng-if="MainController.isLoaded">
 
             <div class="col-lg-6 col-sm-12 col-lg-offset-3">
-                <h3>Vowels total Count: <span class="text-danger">{% raw %}{{ MainController.data.wordCount }}{% endraw %}</span></h3>
+                <h3>Words total Count: <span class="text-danger">{% raw %}{{ MainController.data.wordCount }}{% endraw %}</span></h3>
             </div>
 
             <div class="col-lg-6 col-sm-12 col-lg-offset-3">
 
-                <h3>Total words: split consonants and vowels</h3>
+                <h3>total vowels vs total consonants</h3>
                 <canvas id="base" class="chart chart-base" chart-type="totalChartType"
-                        data="[MainController.data.wordCount, MainController.data.vowelTotalCount, MainController.data.consonantTotalCount ]"
+                        data="[ MainController.data.vowelTotalCount, MainController.data.consonantTotalCount ]"
                         labels="MainController.totalLabels" legend="true">
                 </canvas>
 
                 <div class="text-center">
                     <p>Choose your chart type</p>
-                    <select data-ng-model="totalChartType" data-ng-init="totalChartType = 'Doughnut'">
+                    <select data-ng-model="totalChartType" data-ng-init="totalChartType = 'PolarArea'">
                         <option data-ng-repeat="option in MainController.totalChartTypes" value="{% raw %}{{ option }}{% endraw %}">{% raw %}{{ option }}{% endraw %}</option>
                     </select>
                 </div>
 
             </div>
+
+            <hr>
+
+            <div class="col-lg-6 col-sm-12">
+
+                <h3>lower vowels vs lower consonants</h3>
+                <canvas id="base" class="chart chart-base" chart-type="totalLowerChartType"
+                        data="[ MainController.data.vowelLowerTotalCount, MainController.data.consonantLowerTotalCount ]"
+                        labels="MainController.totalLowerLabels" legend="true">
+                </canvas>
+
+                <div class="text-center">
+                    <p>Choose your chart type</p>
+                    <select data-ng-model="totalLowerChartType" data-ng-init="totalLowerChartType = 'PolarArea'">
+                        <option data-ng-repeat="option in MainController.totalChartTypes" value="{% raw %}{{ option }}{% endraw %}">{% raw %}{{ option }}{% endraw %}</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="col-lg-6 col-sm-12">
+
+                <h3>upper vowels vs upper consonants</h3>
+                <canvas id="base" class="chart chart-base" chart-type="totalUpperChartType"
+                        data="[ MainController.data.vowelUpperTotalCount, MainController.data.consonantUpperTotalCount ]"
+                        labels="MainController.totalUpperLabels" legend="true">
+                </canvas>
+
+                <div class="text-center">
+                    <p>Choose your chart type</p>
+                    <select data-ng-model="totalUpperChartType" data-ng-init="totalUpperChartType = 'PolarArea'">
+                        <option data-ng-repeat="option in MainController.totalChartTypes" value="{% raw %}{{ option }}{% endraw %}">{% raw %}{{ option }}{% endraw %}</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <hr>
 
             <div class="col-lg-6 col-sm-12">
                 <h3>Vowels total Count: <span class="text-info">{% raw %}{{ MainController.data.vowelTotalCount }}{% endraw %}</span></h3>
@@ -46,7 +87,7 @@
             </div>
 
             <div class="col-lg-6 col-sm-12">
-                <h3>Upper vowels vs. Lower</h3>
+                <h3>Upper vowels vs. Lower vowels</h3>
                 <canvas id="base" class="chart chart-base" chart-type="vowelChartType"
                         data="[ MainController.data.vowelLowerCount, MainController.data.vowelUpperCount ]"
                         labels="MainController.vowelLabels" legend="true" series="MainController.series">
@@ -62,7 +103,7 @@
             </div>
 
             <div class="col-lg-6 col-sm-12">
-                <h3>Upper consonants vs. Lower</h3>
+                <h3>Upper consonants vs. Lower consonants</h3>
                 <canvas id="base" class="chart chart-base" chart-type="consonantChartType"
                         data="[ MainController.data.consonantLowerCount, MainController.data.consonantUpperCount ]"
                         labels="MainController.consonantLabels" legend="true" series="MainController.series">
