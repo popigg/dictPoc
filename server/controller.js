@@ -12,21 +12,25 @@ exports.start = function(req, res) {
 
 exports.stats = function(req, res) {
 
-    fs.readFile('/usr/share/dict/words', 'ascii' ,function(err, data) {
+    fs.readFile('/usr/share/dict/words', 'utf8' ,function(err, data) {
         if ( err ) {
             return err;
         }
-
-        var wordList = data.split('\n');
+        
+        var wordCount = data.split('\n' ).length;
 
         var results = {
-            wordCount :             wordList.length,
-            vowelTotalCount:        utils.vowelTotalCount(wordList),
-            consonantTotalCount:    utils.consonantTotalCount(wordList),
-            vowelLowerCount:        utils.vowelLowerCount(wordList),
-            vowelUpperCount:        utils.vowelUpperCount(wordList),
-            consonantLowerCount:    utils.consonantLowerCount(wordList),
-            consonantUpperCount:    utils.consonantUpperCount(wordList)
+            wordCount               :   wordCount,
+            vowelTotalCount         :   utils.vowelTotalCount(data),
+            consonantTotalCount     :   utils.consonantTotalCount(data),
+            vowelLowerCount         :   utils.vowelLowerCount(data),
+            vowelUpperCount         :   utils.vowelUpperCount(data),
+            consonantLowerCount     :   utils.consonantLowerCount(data),
+            consonantUpperCount     :   utils.consonantUpperCount(data),
+            vowelUpperTotalCount    :   utils.vowelUpperTotalCount(data),
+            vowelLowerTotalCount    :   utils.vowelLowerTotalCount(data),
+            consonantLowerTotalCount:   utils.consonantLowerTotalCount(data),
+            consonantUpperTotalCount:   utils.consonantUpperTotalCount(data)
         };
 
         res.send(results)
