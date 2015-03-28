@@ -21,7 +21,7 @@ exports.stats = function(req, res) {
 
         var results = {
             wordCount :             wordList.length,
-            vowelsTotalCount:       utils.vowelsTotalCount(wordList),
+            vowelTotalCount:        utils.vowelTotalCount(wordList),
             consonantTotalCount:    utils.consonantTotalCount(wordList),
             vowelLowerCount:        utils.vowelLowerCount(wordList),
             vowelUpperCount:        utils.vowelUpperCount(wordList),

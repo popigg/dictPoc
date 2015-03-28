@@ -2,35 +2,43 @@
 
 var Utils = function() {
 
-    var vowelsTotalCount = function(wordList) {
-        return 12000000
+    var vowelTotalCount = function(wordList) {
+        return 1200560
     };
 
     var consonantTotalCount = function(wordList) {
-        return 10000000
+        return 1005000
     };
 
     var vowelLowerCount = function(wordList) {
-        return 11000000
+        return [500343, 349989, 43434, 54352, 34234];
     };
 
     var vowelUpperCount = function(wordList) {
-        return 100000
+        return [40343, 9989, 4434, 4352, 3334];
     };
 
     var consonantLowerCount = function(wordList) {
-        return 8000000
+        return [ 500343, 349989, 43434, 54352,
+            34234, 500343, 349989, 43434,
+            54352, 500343, 349989, 43434,
+            54352, 500343, 349989, 43434,
+            2323 ];
     };
 
     var consonantUpperCount = function(wordList) {
-        return 500000
+        return [ 40343, 9989, 4434, 4352,
+                3334, 40343, 9989, 4434,
+                3334, 40343, 9989, 4434,
+                3334, 40343, 9989, 4434,
+                2323 ];
     };
 
     return {
-        vowelsTotalCount    : vowelsTotalCount,
-        consonantTotalCount : consonantTotalCount,
+        vowelTotalCount     : vowelTotalCount,
         vowelLowerCount     : vowelLowerCount,
         vowelUpperCount     : vowelUpperCount,
+        consonantTotalCount : consonantTotalCount,
         consonantLowerCount : consonantLowerCount,
         consonantUpperCount : consonantUpperCount
     }
