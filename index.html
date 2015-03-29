@@ -5,11 +5,11 @@
     <link rel="stylesheet" href="angular-chart.js/dist/angular-chart.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles/app.css">
-    <title>Linux Dictionary POC</title>
+    <title>Unix Dictionary POC</title>
     <base href="/">
 </head>
 <body class="container-fluid">
-    <h1>Analysing Linux Dictionary POC</h1>
+    <h1>Analysing Unix dictionary POC</h1>
     <div data-ng-controller="MainController as MainController">
 
         <div data-ng-hide="MainController.isLoaded" class="btn btn-lg btn-warning">
@@ -25,7 +25,7 @@
 
             <div class="col-lg-6 col-sm-12 col-lg-offset-3">
 
-                <h3>total vowels vs total consonants</h3>
+                <h3>total vowels vs. total consonants</h3>
                 <canvas id="base" class="chart chart-base" chart-type="totalChartType"
                         data="[ MainController.data.vowelTotalCount, MainController.data.consonantTotalCount ]"
                         labels="MainController.totalLabels" legend="true">
@@ -44,7 +44,7 @@
 
             <div class="col-lg-6 col-sm-12">
 
-                <h3>lower vowels vs lower consonants</h3>
+                <h3>lower vowels vs. lower consonants</h3>
                 <canvas id="base" class="chart chart-base" chart-type="totalLowerChartType"
                         data="[ MainController.data.vowelLowerTotalCount, MainController.data.consonantLowerTotalCount ]"
                         labels="MainController.totalLowerLabels" legend="true">
@@ -61,7 +61,7 @@
 
             <div class="col-lg-6 col-sm-12">
 
-                <h3>upper vowels vs upper consonants</h3>
+                <h3>upper vowels vs. upper consonants</h3>
                 <canvas id="base" class="chart chart-base" chart-type="totalUpperChartType"
                         data="[ MainController.data.vowelUpperTotalCount, MainController.data.consonantUpperTotalCount ]"
                         labels="MainController.totalUpperLabels" legend="true">

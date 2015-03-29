@@ -16,11 +16,9 @@ exports.stats = function(req, res) {
         if ( err ) {
             return err;
         }
-        
-        var wordCount = data.split('\n' ).length;
 
         var results = {
-            wordCount               :   wordCount,
+            wordCount               :   data.split('\n' ).length,
             vowelTotalCount         :   utils.vowelTotalCount(data),
             consonantTotalCount     :   utils.consonantTotalCount(data),
             vowelLowerCount         :   utils.vowelLowerCount(data),
