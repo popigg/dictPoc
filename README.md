@@ -1,5 +1,5 @@
 # dictPoc
-Linux dictionary analysis POC
+Unix dictionary analysis POC
 
 ## Contents
 + [Prerequisites](#prerequisites)
@@ -8,6 +8,7 @@ Linux dictionary analysis POC
 ## Prerequisites
 1. node and npm installed
 2. bower installed
+3.  `/usr/share/dict/words` should exist and contains Unix words dictionary
 
 ## Installation
 
