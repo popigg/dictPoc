@@ -5,10 +5,10 @@
         .module( 'app' )
         .controller( 'MainController', MainController );
 
-    MainController.$inject = [ '$scope','$log', '$resource', '$timeout' ];
+    MainController.$inject = [ '$log', '$resource', '$timeout' ];
 
     /* @ngInject */
-    function MainController($scope, $log, $resource, $timeout) {
+    function MainController($log, $resource, $timeout) {
 
         /*jshint validthis: true */
         var vm = this;
