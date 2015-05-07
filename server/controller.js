@@ -39,6 +39,6 @@ var getResults = function(data) {
             vowelLowerTotalCount    :   utils.vowelLowerTotalCount(data),
             consonantLowerTotalCount:   utils.consonantLowerTotalCount(data),
             consonantUpperTotalCount:   utils.consonantUpperTotalCount(data)
-        };
+        }
 };
 
