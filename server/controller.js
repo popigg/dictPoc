@@ -12,12 +12,22 @@ exports.start = function(req, res) {
 
 exports.stats = function(req, res) {
 
-    fs.readFile('/usr/share/dict/words', 'utf8' ,function(err, data) {
+    var filePath = fs.existsSync('/usr/dict/words') ? '/usr/share/dict/words' : 'assets/words';
+        
+    fs.readFile( filePath, 'utf8' ,function(err, data) {
         if ( err ) {
             return err;
         }
 
-        var results = {
+        var results = getResults(data);
+
+        res.send(results)
+
+    });
+};
+
+var getResults = function(data) {
+    return {
             wordCount               :   data.split('\n' ).length,
             vowelTotalCount         :   utils.vowelTotalCount(data),
             consonantTotalCount     :   utils.consonantTotalCount(data),
@@ -30,9 +40,5 @@ exports.stats = function(req, res) {
             consonantLowerTotalCount:   utils.consonantLowerTotalCount(data),
             consonantUpperTotalCount:   utils.consonantUpperTotalCount(data)
         };
-
-        res.send(results)
-
-    });
 };
 
